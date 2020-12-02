@@ -1,0 +1,117 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1>None</h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 750px;
+            background-color: #222222;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "#FA3113", "font": {"color": "white"}, "id": "Bill Cartwright 1989.0", "label": "Bill Cartwright 1989.0", "shape": "dot", "title": "Bill Cartwright 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0", "value": 1}, {"font": {"color": "white"}, "id": "CHI 1989.0", "image": "cb.png", "label": "CHI 1989.0", "shape": "image", "title": "CHI 1989.0 16\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eMichael Jordan* 1989.0\u003cbr\u003eJohn Paxson 1989.0\u003cbr\u003eBill Cartwright 1989.0\u003cbr\u003eJack Haley 1989.0\u003cbr\u003eCharles Davis 1989.0\u003cbr\u003eAnthony Jones 1989.0\u003cbr\u003eDave Corzine 1989.0\u003cbr\u003eEd Nealy 1989.0\u003cbr\u003eSam Vincent 1989.0\u003cbr\u003eDavid Wood 1989.0\u003cbr\u003eDominic Pressley 1989.0\u003cbr\u003eHorace Grant 1989.0\u003cbr\u003eCraig Hodges 1989.0\u003cbr\u003eScottie Pippen* 1989.0\u003cbr\u003eWill Perdue 1989.0\u003cbr\u003eBrad Sellers 1989.0 16\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eMichael Jordan* 1989.0\u003cbr\u003eJohn Paxson 1989.0\u003cbr\u003eBill Cartwright 1989.0\u003cbr\u003eJack Haley 1989.0\u003cbr\u003eCharles Davis 1989.0\u003cbr\u003eAnthony Jones 1989.0\u003cbr\u003eDave Corzine 1989.0\u003cbr\u003eEd Nealy 1989.0\u003cbr\u003eSam Vincent 1989.0\u003cbr\u003eDavid Wood 1989.0\u003cbr\u003eDominic Pressley 1989.0\u003cbr\u003eHorace Grant 1989.0\u003cbr\u003eCraig Hodges 1989.0\u003cbr\u003eScottie Pippen* 1989.0\u003cbr\u003eWill Perdue 1989.0\u003cbr\u003eBrad Sellers 1989.0 16\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eMichael Jordan* 1989.0\u003cbr\u003eJohn Paxson 1989.0\u003cbr\u003eBill Cartwright 1989.0\u003cbr\u003eJack Haley 1989.0\u003cbr\u003eCharles Davis 1989.0\u003cbr\u003eAnthony Jones 1989.0\u003cbr\u003eDave Corzine 1989.0\u003cbr\u003eEd Nealy 1989.0\u003cbr\u003eSam Vincent 1989.0\u003cbr\u003eDavid Wood 1989.0\u003cbr\u003eDominic Pressley 1989.0\u003cbr\u003eHorace Grant 1989.0\u003cbr\u003eCraig Hodges 1989.0\u003cbr\u003eScottie Pippen* 1989.0\u003cbr\u003eWill Perdue 1989.0\u003cbr\u003eBrad Sellers 1989.0", "value": 16}, {"color": "#FA3113", "font": {"color": "white"}, "id": "Dave Corzine 1989.0", "label": "Dave Corzine 1989.0", "shape": "dot", "title": "Dave Corzine 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0", "value": 1}, {"color": "#FA3113", "font": {"color": "white"}, "id": "Charles Davis 1989.0", "label": "Charles Davis 1989.0", "shape": "dot", "title": "Charles Davis 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0", "value": 1}, {"color": "#FA3113", "font": {"color": "white"}, "id": "Horace Grant 1989.0", "label": "Horace Grant 1989.0", "shape": "dot", "title": "Horace Grant 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0", "value": 1}, {"color": "#FA3113", "font": {"color": "white"}, "id": "Jack Haley 1989.0", "label": "Jack Haley 1989.0", "shape": "dot", "title": "Jack Haley 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0", "value": 1}, {"color": "#FA3113", "font": {"color": "white"}, "id": "Craig Hodges 1989.0", "label": "Craig Hodges 1989.0", "shape": "dot", "title": "Craig Hodges 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0", "value": 1}, {"color": "#FA3113", "font": {"color": "white"}, "id": "Anthony Jones 1989.0", "label": "Anthony Jones 1989.0", "shape": "dot", "title": "Anthony Jones 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0", "value": 1}, {"color": "#FA3113", "font": {"color": "white"}, "id": "Michael Jordan* 1989.0", "label": "Michael Jordan* 1989.0", "shape": "dot", "title": "Michael Jordan* 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0", "value": 1}, {"color": "#FA3113", "font": {"color": "white"}, "id": "Ed Nealy 1989.0", "label": "Ed Nealy 1989.0", "shape": "dot", "title": "Ed Nealy 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0", "value": 1}, {"color": "#FA3113", "font": {"color": "white"}, "id": "John Paxson 1989.0", "label": "John Paxson 1989.0", "shape": "dot", "title": "John Paxson 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0", "value": 1}, {"color": "#FA3113", "font": {"color": "white"}, "id": "Will Perdue 1989.0", "label": "Will Perdue 1989.0", "shape": "dot", "title": "Will Perdue 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0", "value": 1}, {"color": "#FA3113", "font": {"color": "white"}, "id": "Scottie Pippen* 1989.0", "label": "Scottie Pippen* 1989.0", "shape": "dot", "title": "Scottie Pippen* 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0", "value": 1}, {"color": "#FA3113", "font": {"color": "white"}, "id": "Dominic Pressley 1989.0", "label": "Dominic Pressley 1989.0", "shape": "dot", "title": "Dominic Pressley 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0", "value": 1}, {"color": "#FA3113", "font": {"color": "white"}, "id": "Brad Sellers 1989.0", "label": "Brad Sellers 1989.0", "shape": "dot", "title": "Brad Sellers 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0", "value": 1}, {"color": "#FA3113", "font": {"color": "white"}, "id": "Sam Vincent 1989.0", "label": "Sam Vincent 1989.0", "shape": "dot", "title": "Sam Vincent 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0", "value": 1}, {"color": "#FA3113", "font": {"color": "white"}, "id": "David Wood 1989.0", "label": "David Wood 1989.0", "shape": "dot", "title": "David Wood 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1989.0", "value": 1}, {"color": "red", "font": {"color": "white"}, "id": "B.J. Armstrong 1990.0", "label": "B.J. Armstrong 1990.0", "shape": "dot", "title": "B.J. Armstrong 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0", "value": 1}, {"font": {"color": "white"}, "id": "CHI 1990.0", "image": "cb.png", "label": "CHI 1990.0", "shape": "image", "title": "CHI 1990.0 14\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eClifford Lett 1990.0\u003cbr\u003eScottie Pippen* 1990.0\u003cbr\u003eBill Cartwright 1990.0\u003cbr\u003eEd Nealy 1990.0\u003cbr\u003eJohn Paxson 1990.0\u003cbr\u003eMichael Jordan* 1990.0\u003cbr\u003eHorace Grant 1990.0\u003cbr\u003eJeff Sanders 1990.0\u003cbr\u003eWill Perdue 1990.0\u003cbr\u003eStacey King 1990.0\u003cbr\u003eJack Haley 1990.0\u003cbr\u003eCraig Hodges 1990.0\u003cbr\u003eCharles Davis 1990.0\u003cbr\u003eB.J. Armstrong 1990.0 14\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eClifford Lett 1990.0\u003cbr\u003eScottie Pippen* 1990.0\u003cbr\u003eBill Cartwright 1990.0\u003cbr\u003eEd Nealy 1990.0\u003cbr\u003eJohn Paxson 1990.0\u003cbr\u003eMichael Jordan* 1990.0\u003cbr\u003eHorace Grant 1990.0\u003cbr\u003eJeff Sanders 1990.0\u003cbr\u003eWill Perdue 1990.0\u003cbr\u003eStacey King 1990.0\u003cbr\u003eJack Haley 1990.0\u003cbr\u003eCraig Hodges 1990.0\u003cbr\u003eCharles Davis 1990.0\u003cbr\u003eB.J. Armstrong 1990.0", "value": 14}, {"color": "red", "font": {"color": "white"}, "id": "Bill Cartwright 1990.0", "label": "Bill Cartwright 1990.0", "shape": "dot", "title": "Bill Cartwright 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0", "value": 1}, {"color": "red", "font": {"color": "white"}, "id": "Charles Davis 1990.0", "label": "Charles Davis 1990.0", "shape": "dot", "title": "Charles Davis 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0", "value": 1}, {"color": "red", "font": {"color": "white"}, "id": "Horace Grant 1990.0", "label": "Horace Grant 1990.0", "shape": "dot", "title": "Horace Grant 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0", "value": 1}, {"color": "red", "font": {"color": "white"}, "id": "Jack Haley 1990.0", "label": "Jack Haley 1990.0", "shape": "dot", "title": "Jack Haley 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0", "value": 1}, {"color": "red", "font": {"color": "white"}, "id": "Craig Hodges 1990.0", "label": "Craig Hodges 1990.0", "shape": "dot", "title": "Craig Hodges 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0", "value": 1}, {"color": "red", "font": {"color": "white"}, "id": "Michael Jordan* 1990.0", "label": "Michael Jordan* 1990.0", "shape": "dot", "title": "Michael Jordan* 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0", "value": 1}, {"color": "red", "font": {"color": "white"}, "id": "Stacey King 1990.0", "label": "Stacey King 1990.0", "shape": "dot", "title": "Stacey King 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0", "value": 1}, {"color": "red", "font": {"color": "white"}, "id": "Clifford Lett 1990.0", "label": "Clifford Lett 1990.0", "shape": "dot", "title": "Clifford Lett 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0", "value": 1}, {"color": "red", "font": {"color": "white"}, "id": "Ed Nealy 1990.0", "label": "Ed Nealy 1990.0", "shape": "dot", "title": "Ed Nealy 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0", "value": 1}, {"color": "red", "font": {"color": "white"}, "id": "John Paxson 1990.0", "label": "John Paxson 1990.0", "shape": "dot", "title": "John Paxson 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0", "value": 1}, {"color": "red", "font": {"color": "white"}, "id": "Will Perdue 1990.0", "label": "Will Perdue 1990.0", "shape": "dot", "title": "Will Perdue 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0", "value": 1}, {"color": "red", "font": {"color": "white"}, "id": "Scottie Pippen* 1990.0", "label": "Scottie Pippen* 1990.0", "shape": "dot", "title": "Scottie Pippen* 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0", "value": 1}, {"color": "red", "font": {"color": "white"}, "id": "Jeff Sanders 1990.0", "label": "Jeff Sanders 1990.0", "shape": "dot", "title": "Jeff Sanders 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1990.0", "value": 1}, {"color": "#FA512E", "font": {"color": "white"}, "id": "B.J. Armstrong 1991.0", "label": "B.J. Armstrong 1991.0", "shape": "dot", "title": "B.J. Armstrong 1991.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1991.0", "value": 1}, {"font": {"color": "white"}, "id": "CHI 1991.0", "image": "cb.png", "label": "CHI 1991.0", "shape": "image", "title": "CHI 1991.0 12\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eStacey King 1991.0\u003cbr\u003eCliff Levingston 1991.0\u003cbr\u003eDennis Hopson 1991.0\u003cbr\u003eMichael Jordan* 1991.0\u003cbr\u003eJohn Paxson 1991.0\u003cbr\u003eCraig Hodges 1991.0\u003cbr\u003eBill Cartwright 1991.0\u003cbr\u003eScottie Pippen* 1991.0\u003cbr\u003eB.J. Armstrong 1991.0\u003cbr\u003eWill Perdue 1991.0\u003cbr\u003eHorace Grant 1991.0\u003cbr\u003eScott Williams 1991.0", "value": 12}, {"color": "#FA512E", "font": {"color": "white"}, "id": "Bill Cartwright 1991.0", "label": "Bill Cartwright 1991.0", "shape": "dot", "title": "Bill Cartwright 1991.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1991.0", "value": 1}, {"color": "#FA512E", "font": {"color": "white"}, "id": "Horace Grant 1991.0", "label": "Horace Grant 1991.0", "shape": "dot", "title": "Horace Grant 1991.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1991.0", "value": 1}, {"color": "#FA512E", "font": {"color": "white"}, "id": "Craig Hodges 1991.0", "label": "Craig Hodges 1991.0", "shape": "dot", "title": "Craig Hodges 1991.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1991.0", "value": 1}, {"color": "#FA512E", "font": {"color": "white"}, "id": "Dennis Hopson 1991.0", "label": "Dennis Hopson 1991.0", "shape": "dot", "title": "Dennis Hopson 1991.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1991.0", "value": 1}, {"color": "#FA512E", "font": {"color": "white"}, "id": "Michael Jordan* 1991.0", "label": "Michael Jordan* 1991.0", "shape": "dot", "title": "Michael Jordan* 1991.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1991.0", "value": 1}, {"color": "#FA512E", "font": {"color": "white"}, "id": "Stacey King 1991.0", "label": "Stacey King 1991.0", "shape": "dot", "title": "Stacey King 1991.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1991.0", "value": 1}, {"color": "#FA512E", "font": {"color": "white"}, "id": "Cliff Levingston 1991.0", "label": "Cliff Levingston 1991.0", "shape": "dot", "title": "Cliff Levingston 1991.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1991.0", "value": 1}, {"color": "#FA512E", "font": {"color": "white"}, "id": "John Paxson 1991.0", "label": "John Paxson 1991.0", "shape": "dot", "title": "John Paxson 1991.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1991.0", "value": 1}, {"color": "#FA512E", "font": {"color": "white"}, "id": "Will Perdue 1991.0", "label": "Will Perdue 1991.0", "shape": "dot", "title": "Will Perdue 1991.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1991.0", "value": 1}, {"color": "#FA512E", "font": {"color": "white"}, "id": "Scottie Pippen* 1991.0", "label": "Scottie Pippen* 1991.0", "shape": "dot", "title": "Scottie Pippen* 1991.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1991.0", "value": 1}, {"color": "#FA512E", "font": {"color": "white"}, "id": "Scott Williams 1991.0", "label": "Scott Williams 1991.0", "shape": "dot", "title": "Scott Williams 1991.0 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCHI 1991.0", "value": 1}]);
+        edges = new vis.DataSet([{"from": "Bill Cartwright 1989.0", "to": "CHI 1989.0"}, {"from": "Dave Corzine 1989.0", "to": "CHI 1989.0"}, {"from": "Charles Davis 1989.0", "to": "CHI 1989.0"}, {"from": "Horace Grant 1989.0", "to": "CHI 1989.0"}, {"from": "Jack Haley 1989.0", "to": "CHI 1989.0"}, {"from": "Craig Hodges 1989.0", "to": "CHI 1989.0"}, {"from": "Anthony Jones 1989.0", "to": "CHI 1989.0"}, {"from": "Michael Jordan* 1989.0", "to": "CHI 1989.0"}, {"from": "Ed Nealy 1989.0", "to": "CHI 1989.0"}, {"from": "John Paxson 1989.0", "to": "CHI 1989.0"}, {"from": "Will Perdue 1989.0", "to": "CHI 1989.0"}, {"from": "Scottie Pippen* 1989.0", "to": "CHI 1989.0"}, {"from": "Dominic Pressley 1989.0", "to": "CHI 1989.0"}, {"from": "Brad Sellers 1989.0", "to": "CHI 1989.0"}, {"from": "Sam Vincent 1989.0", "to": "CHI 1989.0"}, {"from": "David Wood 1989.0", "to": "CHI 1989.0"}, {"from": "B.J. Armstrong 1990.0", "to": "CHI 1990.0"}, {"from": "Bill Cartwright 1990.0", "to": "CHI 1990.0"}, {"from": "Charles Davis 1990.0", "to": "CHI 1990.0"}, {"from": "Horace Grant 1990.0", "to": "CHI 1990.0"}, {"from": "Jack Haley 1990.0", "to": "CHI 1990.0"}, {"from": "Craig Hodges 1990.0", "to": "CHI 1990.0"}, {"from": "Michael Jordan* 1990.0", "to": "CHI 1990.0"}, {"from": "Stacey King 1990.0", "to": "CHI 1990.0"}, {"from": "Clifford Lett 1990.0", "to": "CHI 1990.0"}, {"from": "Ed Nealy 1990.0", "to": "CHI 1990.0"}, {"from": "John Paxson 1990.0", "to": "CHI 1990.0"}, {"from": "Will Perdue 1990.0", "to": "CHI 1990.0"}, {"from": "Scottie Pippen* 1990.0", "to": "CHI 1990.0"}, {"from": "Jeff Sanders 1990.0", "to": "CHI 1990.0"}, {"from": "B.J. Armstrong 1991.0", "to": "CHI 1991.0"}, {"from": "Bill Cartwright 1991.0", "to": "CHI 1991.0"}, {"from": "Horace Grant 1991.0", "to": "CHI 1991.0"}, {"from": "Craig Hodges 1991.0", "to": "CHI 1991.0"}, {"from": "Dennis Hopson 1991.0", "to": "CHI 1991.0"}, {"from": "Michael Jordan* 1991.0", "to": "CHI 1991.0"}, {"from": "Stacey King 1991.0", "to": "CHI 1991.0"}, {"from": "Cliff Levingston 1991.0", "to": "CHI 1991.0"}, {"from": "John Paxson 1991.0", "to": "CHI 1991.0"}, {"from": "Will Perdue 1991.0", "to": "CHI 1991.0"}, {"from": "Scottie Pippen* 1991.0", "to": "CHI 1991.0"}, {"from": "Scott Williams 1991.0", "to": "CHI 1991.0"}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "forceAtlas2Based": {
+            "avoidOverlap": 0,
+            "centralGravity": 0.01,
+            "damping": 0.4,
+            "gravitationalConstant": -50,
+            "springConstant": 0.08,
+            "springLength": 100
+        },
+        "solver": "forceAtlas2Based",
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

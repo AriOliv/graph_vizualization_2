@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Grafo NBA</title>
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body>
+        <section>
+            <div class="circle"></div>
+            <header>
+                <a href="#"><img src="images/fgvemap2.png" class="logo"></a>
+                <div class="toggle" onclick="toggleMenu()"></div>
+                    <ul class="navigation">
+                        <li><a onclick="myFunction()">Sobre</a></li>
+                        <li><a href="#">Fontes e referências</a></li>
+                    </ul>
+            </header>
+            <div class="content">
+                <div class="textBox">
+                    <h2>Trabalho A2</h2>
+                    <h1>Banco de dados - 2020.2</h1>
+                    <p>Apresentação relativa à segunda avaliação da disciplina Banco de Dados.
+                        Nosso trabalho foi feito em cima de dados disponibilizados no site Kaggle, que consistem  em informações sobre jogadores, times e salários da NBA.<span id="dots">...</span><span id="more">Para o trabalho em cima das informações do banco, fornecido em SQLite, utilizamos a biblioteca Pandas de Python, trabalhando com dataframes para a criação dos grafos. Estes foram criados com outra biblioteca da mesma linguagem, chamada Pyvis, que permite a criação de grafos interativos em HTML.</span></p>
+                    <button onclick="myFunction()" id="myBtn">Mais sobre</button>
+                </div>
+                
+                <div class="imgBox">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                          <div class="swiper-slide">
+                            <figure>
+                                <a href="#">
+                                <img src="images/img2.png" width="100%" height="100%">
+                                <figcaption></figcaption>
+                            </a>
+                            </figure>
+                        </div>
+                        <div class="swiper-slide">
+                            <figure>
+                                <a href="#">
+                                <img src="images/cb.png" height="100%">
+                                <figcaption></figcaption>
+                            </a>
+                            </figure>
+                      </div>
+                        <div class="swiper-slide">
+                            <figure>
+                                <a href="#">
+                                <img src="images/sp.png" height="100%">
+                                <figcaption></figcaption>
+                            </a>
+                            </figure>
+                        </div>
+                        </div>
+                      </div>
+                </div>
+
+            </div>
+            <ul class="sci">
+                <li><a href="https://github.com/AriOliv">
+                    <img src="images/github_logo2.png" alt="GitHub ARI" title="opa" width="100%" height="100%">
+                </a>
+            </li>
+                <li><a href="https://github.com/victorbombarda">
+                    <img src="images/github_logo2.png" width="100%" height="100%">
+                </a>
+            </li>
+                <li><a href="https://www.nba.com">
+                    <img src="images/nbablack.png" alt="SIte NBA" title="opa" height="60%">
+                </a>
+            </li>
+                <li><a href="https://emap.fgv.br">
+                    <img src="images/fgv.png" alt="Site EMAp" title="opa" height="70%">
+                </a>
+            </li>
+            </ul>
+        </section>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <script>
+            var swiper = new Swiper('.swiper-container', {
+              effect: 'coverflow',
+              grabCursor: true,
+              centeredSlides: true,
+              slidesPerView: 'auto',
+              coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 200,
+                modifier: 1,
+                slideShadows: true,
+              },
+              pagination: {
+                el: '.swiper-pagination',
+              },
+              loop: true,
+            });
+
+            function toggleMenu(){
+                const menuToggle = document.querySelector('.toggle');
+                const navigation = document.querySelector('.navigation')
+                menuToggle.classList.toggle('active')
+                navigation.classList.toggle('active')
+            };
+            function myFunction() {
+                var dots = document.getElementById("dots");
+                var moreText = document.getElementById("more");
+                var btnText = document.getElementById("myBtn");
+
+                if (dots.style.display === "none") {
+                    dots.style.display = "inline";
+                    btnText.innerHTML = "Mais sobre";
+                    moreText.style.display = "none";
+                } else {
+                    dots.style.display = "none";
+                    btnText.innerHTML = "Já li";
+                    moreText.style.display = "inline";
+                }
+            };
+            
+          </script>
+
+          <script src="js/TweenLite.min.js"></script>
+          <script src="js/EasePack.min.js"></script>
+          <script src="js/demo-1.js"></script>
+          <div class="vizu">
+            <center>
+            <h2>Relações entre jogadores e times(17-18)</h2>
+            <p>Grafo relacionando todos os jogadores e times da NBA na temporada de 2016-2017. As temporadas nos EUA, assim como o ano letivo, começa e termina em anos diferentes. Neste grafo direcionado, a direção parte dos jogadores em direção aos times.
+                Percebemos que jogadores com diversas conexões são jogadores que trocaram de times durante a temporada, gerando conexidade no grafo.
+                Ressaltam-se também alguns poucos grafia desconexos, dos quais não tiveram nenhuma troca no time durante a temporada (nenhuma contratação nem nenhuma venda).</p>
+            <iframe src="pages/geral.html"></iframe>
+            <h2>Chigado Bulls(89-91)</h2>
+            <p>Este grafo conta um pouco de história. Aqui temos três grafos desconexos que evidenciam o processo de transformação do Chicago Bulls, e a formação do famoso Dream Team. Em 1989, o Chicago Bulls, time até então de pequena relevância no cenário do basquete, começou a fazer grandes investimentos em jogadores e treinadores. Podemos perceber que, de 1989, até 1991 (ano em que o Chicago foi campeão da NBA pela primeira vez) vemos a diminuição de jogadores que passaram pelo time durante a temporada. 
+                Na NBA, em média, os times têm em torno de 12 jogadores, entre eles jogadores principais e os reservas, assim um time que passa uma temporada inteira com 12 jogadores bem evidencia o ditado: “time que está ganhando não se mexe”.</p>
+            <iframe src="pages/chicago.html"></iframe>
+            <h2>Top 10 jogadores mais bem pagos(17-18)</h2>
+            <p>Nesta última visualização, pusemos a consulta em ordem crescente em relação ao salário, e filtramos em até 10 linhas para termos os top 10 jogadores mais bem pagos da NBA nesta temporada analisada. Temos, representado por estrelas, os times conectados aos jogadores que os pertencem. O tamanho  de cada aresta e dos vértices que representam jogadores corresponde ao tamanho do salário, pago a eles.</p>
+            <iframe src="pages/salarios.html"></iframe>
+            </center>
+         </div>
+    </body>
+</html>

@@ -1,0 +1,119 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 100%;
+            background-color: #161616;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"font": {"color": "white"}, "group": "GSW", "id": "Stephen Curry", "image": "../images/img2.png", "label": "Stephen Curry", "shape": "image", "title": "Stephen Curry 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eGSW", "value": 34682550.0}, {"font": {"color": "white"}, "group": "GSW", "id": "GSW", "label": "GSW", "shape": "star", "title": "GSW 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eStephen Curry", "value": 34682550.0}, {"font": {"color": "white"}, "group": "CLE", "id": "LeBron James", "image": "../images/img2.png", "label": "LeBron James", "shape": "image", "title": "LeBron James 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eCLE", "value": 33285709.0}, {"font": {"color": "white"}, "group": "CLE", "id": "CLE", "label": "CLE", "shape": "star", "title": "CLE 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eLeBron James", "value": 33285709.0}, {"font": {"color": "white"}, "group": "DEN", "id": "Paul Millsap", "image": "../images/img2.png", "label": "Paul Millsap", "shape": "image", "title": "Paul Millsap 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eDEN", "value": 31269231.0}, {"font": {"color": "white"}, "group": "DEN", "id": "DEN", "label": "DEN", "shape": "star", "title": "DEN 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003ePaul Millsap", "value": 31269231.0}, {"font": {"color": "white"}, "group": "BOS", "id": "Gordon Hayward", "image": "../images/img2.png", "label": "Gordon Hayward", "shape": "image", "title": "Gordon Hayward 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eBOS", "value": 29727900.0}, {"font": {"color": "white"}, "group": "BOS", "id": "BOS", "label": "BOS", "shape": "star", "title": "BOS 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eGordon Hayward", "value": 29727900.0}, {"font": {"color": "white"}, "group": "DET", "id": "Blake Griffin", "image": "../images/img2.png", "label": "Blake Griffin", "shape": "image", "title": "Blake Griffin 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eDET", "value": 29512900.0}, {"font": {"color": "white"}, "group": "DET", "id": "DET", "label": "DET", "shape": "star", "title": "DET 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eBlake Griffin", "value": 29512900.0}, {"font": {"color": "white"}, "group": "TOR", "id": "Kyle Lowry", "image": "../images/img2.png", "label": "Kyle Lowry", "shape": "image", "title": "Kyle Lowry 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eTOR", "value": 28703704.0}, {"font": {"color": "white"}, "group": "TOR", "id": "TOR", "label": "TOR", "shape": "star", "title": "TOR 2\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eDeMar DeRozan\u003cbr\u003eKyle Lowry", "value": 28703704.0}, {"font": {"color": "white"}, "group": "OKC", "id": "Russell Westbrook", "image": "../images/img2.png", "label": "Russell Westbrook", "shape": "image", "title": "Russell Westbrook 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eOKC", "value": 28530608.0}, {"font": {"color": "white"}, "group": "OKC", "id": "OKC", "label": "OKC", "shape": "star", "title": "OKC 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eRussell Westbrook", "value": 28530608.0}, {"font": {"color": "white"}, "group": "MEM", "id": "Mike Conley", "image": "../images/img2.png", "label": "Mike Conley", "shape": "image", "title": "Mike Conley 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eMEM", "value": 28530608.0}, {"font": {"color": "white"}, "group": "MEM", "id": "MEM", "label": "MEM", "shape": "star", "title": "MEM 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eMike Conley", "value": 28530608.0}, {"font": {"color": "white"}, "group": "HOU", "id": "James Harden", "image": "../images/img2.png", "label": "James Harden", "shape": "image", "title": "James Harden 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eHOU", "value": 28299399.0}, {"font": {"color": "white"}, "group": "HOU", "id": "HOU", "label": "HOU", "shape": "star", "title": "HOU 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eJames Harden", "value": 28299399.0}, {"font": {"color": "white"}, "group": "TOR", "id": "DeMar DeRozan", "image": "../images/img2.png", "label": "DeMar DeRozan", "shape": "image", "title": "DeMar DeRozan 1\u003cbr\u003e Conex\u00f5es:\u003cbr\u003eTOR", "value": 27739975.0}]);
+        edges = new vis.DataSet([{"from": "Stephen Curry", "to": "GSW", "value": 34682550.0}, {"from": "LeBron James", "to": "CLE", "value": 33285709.0}, {"from": "Paul Millsap", "to": "DEN", "value": 31269231.0}, {"from": "Gordon Hayward", "to": "BOS", "value": 29727900.0}, {"from": "Blake Griffin", "to": "DET", "value": 29512900.0}, {"from": "Kyle Lowry", "to": "TOR", "value": 28703704.0}, {"from": "Russell Westbrook", "to": "OKC", "value": 28530608.0}, {"from": "Mike Conley", "to": "MEM", "value": 28530608.0}, {"from": "James Harden", "to": "HOU", "value": 28299399.0}, {"from": "DeMar DeRozan", "to": "TOR", "value": 27739975.0}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false,
+        "keyboard": {
+            "enabled": true
+        },
+        "multiselect": true,
+        "navigationButtons": true
+    },
+    "physics": {
+        "enabled": true,
+        "forceAtlas2Based": {
+            "avoidOverlap": 0,
+            "centralGravity": 0.01,
+            "damping": 0.4,
+            "gravitationalConstant": -50,
+            "springConstant": 0.08,
+            "springLength": 100
+        },
+        "solver": "forceAtlas2Based",
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
